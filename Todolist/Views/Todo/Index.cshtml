@@ -1,0 +1,54 @@
+﻿@model List<Todo>
+
+<div class="container">
+	<div class="row pt-4">
+
+		<div class="col-6">
+
+			<h1 class="text-primary">Todo List</h1>
+		</div>
+		<div class="col-6 text-end">
+
+			<a asp-action="Create" asp-controller="Todo" class="btn btn-primary">
+			<i class="bi-plus-circle"></i> Create New Task
+			</a>
+		</div>
+	</div>
+
+<table class="table table-boarded table-striped">
+	<thead>
+		<tr>
+			<th>
+				Task
+			</th>
+			<th>
+				Dead Line
+			</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var obj in Model.OrderBy(u=>u.Deadline))
+		{
+			<tr>
+				<td>
+					@obj.Task
+				</td>
+				<td>
+					@obj.Deadline
+				</td>
+				<td>
+					<div class="w-100 btn-group " role="group">
+							<a asp-action="Edit" asp-controller="Todo" class="btn btn-primary mx-2" >
+							<i class="bi bi-pencil-square"></i> Edit
+							</a>
+							<a asp-action="Delete" asp-controller="Todo" class="btn btn-danger mx-2">
+								<i class="bi bi-trash-fill"></i> Delete
+							</a>
+					</div>
+				</td>
+			</tr>			
+		}
+	</tbody>
+</table>
+</div>
